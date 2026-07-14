@@ -1,0 +1,330 @@
+<link rel="stylesheet" href="{{ 'section-footer.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-forms.css' | asset_url }}" media="print" onload="this.media='all'">
+
+<!-- Import Romantic Serif Font for Theme Alignment -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+<style>
+  /* ==========================================================================
+     ROMANTIC LOVERS MYSTERY INTERFACE: FOOTER GRADIENT & LACE OVERLAY
+     ========================================================================== */
+  .footer,
+  .footer-section,
+  footer.gradient {
+    /* Multi-layered background: Subtle repeating lace vector + deep burgundy-to-pink gradient */
+    background-image: 
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23ff7fa3' fill-opacity='0.06'%3E%3Cpath d='M40 0C25 0 20 15 20 20C15 20 0 25 0 40C0 55 15 60 20 60C20 65 25 80 40 80C55 80 60 65 60 60C65 60 80 55 80 40C80 25 65 20 60 20C60 15 55 0 40 0ZM40 5C50 5 55 15 55 25C45 25 40 35 40 40C40 35 35 25 25 25C25 15 30 5 40 5ZM15 35C25 35 35 40 40 40C35 40 25 45 15 45C5 45 5 40 5 35C5 30 15 35 15 35ZM65 35C65 35 75 30 75 35C75 40 75 45 65 45C55 45 45 40 40 40C45 40 55 35 65 35ZM25 55C35 55 40 45 40 40C40 45 45 55 55 55C55 65 50 75 40 75C30 75 25 65 25 55Z'/%3E%3Ccircle cx='40' cy='40' r='3'/%3E%3C/g%3E%3C/svg%3E"),
+      linear-gradient(135deg, #4a001e 0%, #800020 40%, #d43f6a 100%) !important;
+    background-color: #4a001e !important;
+    border-top: 2px solid #ff7fa3 !important; /* Soft glowing pink top border */
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  /* Force the romantic serif font and color styling across footer links/text */
+  .footer * ,
+  .footer__heading,
+  .footer__link,
+  .footer__localization-label,
+  .copyright__content,
+  .copyright__content a {
+    color: #fdfaf6 !important; /* Muted romantic off-white */
+    fill: #fdfaf6 !important;
+    font-family: 'Playfair Display', serif !important;
+  }
+
+  .footer__heading {
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+  }
+
+  /* Hover transitions for footer navigation links */
+  .footer__link:hover,
+  .copyright__content a:hover {
+    color: #ffb3c6 !important; /* Soft pastel pink glow */
+    text-shadow: 0 0 10px rgba(255, 179, 198, 0.6);
+    text-decoration: none !important;
+  }
+
+  /* Split layout: Kept close together to maintain intimate, connected alignment */
+  .footer-block--newsletter {
+    margin-top: 2rem !important; 
+    width: 100%;
+  }
+
+  @media screen and (min-width: 750px) {
+    .footer-block--newsletter {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: flex-start !important; /* Keeps the input fields directly next to the heading */
+      max-width: 100% !important;
+      gap: 3.5rem; /* Cozy but breathable distance */
+    }
+
+    .footer-block--newsletter .footer__heading {
+      margin-bottom: 0 !important; /* Prevents text pushing downwards */
+      flex: 0 1 auto !important; /* Prevents text block from spanning unnecessarily wide */
+      max-width: 50%;
+    }
+
+    .footer__newsletter.newsletter-form {
+      margin: 0 !important; /* Clear old override offsets */
+      max-width: 38rem !important;
+      width: 100%;
+      flex: 1;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .footer-block--newsletter {
+      display: flex;
+      flex-direction: column;
+    }
+    .footer__newsletter.newsletter-form {
+      margin-top: 2rem !important;
+      max-width: 100%;
+    }
+  }
+
+  /* Style adjustments for the email subscription input box box */
+  .footer .field__input {
+    background-color: rgba(74, 0, 30, 0.6) !important; /* Translucent deep burgundy input */
+    border: 1px solid #ff7fa3 !important;
+    color: #fdfaf6 !important;
+    font-family: 'Playfair Display', serif !important;
+  }
+
+  .footer .field__label {
+    color: #ffb3c6 !important;
+    font-family: 'Playfair Display', serif !important;
+  }
+
+  .footer__column--info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 127, 163, 0.2);
+  }
+
+  .footer__content-bottom-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .footer__content-bottom-wrapper {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
+
+<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  {%- if section.blocks.size > 0 or section.settings.show_newsletter -%}
+    <div class="footer__content-top page-width">
+      {%- if section.blocks.size > 0 -%}
+        <div class="footer__blocks-wrapper grid grid--1-col grid--2-col-tablet grid--4-col-desktop">
+          {%- for block in section.blocks -%}
+            <div class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}
+                <h2 class="footer__heading">{{ block.settings.heading | escape }}</h2>
+              {%- endif -%}
+
+              {%- case block.type -%}
+                {%- when 'text' -%}
+                  <div class="footer-block__details-content rte">
+                    {{ block.settings.subtext }}
+                  </div>
+                {%- when 'link_list' -%}
+                  {%- if block.settings.menu != blank -%}
+                    <ul class="footer-block__details-content list-unstyled">
+                      {%- for link in block.settings.menu.links -%}
+                        <li>
+                          <a href="{{ link.url }}" class="link list-menu__item list-menu__item--link footer__link{% if link.active %} list-menu__item--active{% endif %}">
+                            {{ link.title }}
+                          </a>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- endif -%}
+              {%- endcase -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.show_newsletter -%}
+        <div class="footer-block--newsletter">
+          <!-- Custom Romanticized Newsletter Header Context -->
+          <h2 class="footer__heading" style="line-height: 1.4;">
+            Join the Secret Circle 
+            <span style="font-style: italic; display:block; font-size: 0.75em; margin-top: 8px; color: #ffb3c6; font-weight: 400; letter-spacing: 0;">
+              Receive daily clues, cosmic matchings, and whispers of love.
+            </span>
+          </h2>
+          {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="newsletter-form__field-wrapper">
+              <div class="field">
+                <input
+                  id="NewsletterForm--{{ section.id }}"
+                  type="email"
+                  name="contact[email]"
+                  class="field__input"
+                  value="{{ form.email }}"
+                  aria-required="true"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  autocomplete="email"
+                  {% if form.errors %}
+                    autofocus
+                    aria-invalid="true"
+                    aria-describedby="ContactFooter-error"
+                  {% elsif form.posted_successfully? %}
+                    aria-describedby="ContactFooter-success"
+                  {% endif %}
+                  placeholder="{{ 'newsletter.label' | t }}"
+                  required
+                >
+                <label class="field__label" for="NewsletterForm--{{ section.id }}">
+                  {{ 'newsletter.label' | t }}
+                </label>
+                <button
+                  type="submit"
+                  class="newsletter-form__button field__button"
+                  name="commit"
+                  id="Subscribe"
+                  aria-label="{{ 'newsletter.button_label' | t }}"
+                >
+                  <span class="svg-wrapper" style="color: #ffb3c6;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px; height:20px;">
+                      <line x1="22" y1="2" x2="11" y2="13"></line>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+              {%- if form.errors -%}
+                <small class="newsletter-form__message form__message" id="ContactFooter-error">
+                  {{- form.errors.translated_fields.email | capitalize }}
+                  {{ form.errors.messages.email -}}
+                </small>
+              {%- endif -%}
+            </div>
+            {%- if form.posted_successfully? -%}
+              <h3 class="newsletter-form__message newsletter-form__message--success form__message" id="ContactFooter-success" tabindex="-1" autofocus style="color: #ffb3c6 !important;">
+                You are now inside the circle. Watch your inbox closely...
+              </h3>
+            {%- endif -%}
+          {%- endform -%}
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <div class="footer__content-bottom page-width">
+    <div class="footer__column footer__column--info">
+      <div class="footer__content-bottom-wrapper">
+        <div class="footer__copyright caption">
+          <small class="copyright__content">&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url }}</small>
+          <small class="copyright__content" style="opacity: 0.7; margin-left: 5px;">Powered by Love</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "t:sections.footer.blocks.link_list.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Quick links",
+          "label": "t:sections.footer.blocks.link_list.settings.heading.label"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "default": "footer",
+          "label": "t:sections.footer.blocks.link_list.settings.menu.label",
+          "info": "t:sections.footer.blocks.link_list.settings.menu.info"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.footer.blocks.text.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "Heading",
+          "label": "t:sections.footer.blocks.text.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "subtext",
+          "default": "<p>Share contact information, store details, and brand content with your customers.</p>",
+          "label": "t:sections.footer.blocks.text.settings.subtext.label"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "default": true,
+      "label": "t:sections.footer.settings.show_newsletter.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}
